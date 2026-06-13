@@ -15,7 +15,7 @@ import (
 	"github.com/benelog/md-lens/internal/term"
 )
 
-const version = "1.0.1"
+const version = "1.0.2"
 
 func main() {
 	opts, err := cli.Parse(os.Args[1:])
@@ -30,7 +30,7 @@ func main() {
 		printHelp()
 		return
 	case opts.Version:
-		fmt.Println("mdl " + version)
+		fmt.Println("MD Lens v" + version)
 		return
 	case opts.Caps:
 		caps := term.Detect(opts.Plain, opts.NoColor, opts.NoImages, opts.Width, opts.ForceGraphics)
@@ -83,7 +83,7 @@ func readInput(file string) (markdown, baseDir string, err error) {
 }
 
 func printHelp() {
-	fmt.Print("mdl v" + version + ` — a rich terminal markdown viewer
+	fmt.Print("MD Lens v" + version + ` — a rich terminal markdown viewer
 
 Usage: mdl [options] [file.md]
        (reads stdin when no file is given)

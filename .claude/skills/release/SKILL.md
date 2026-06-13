@@ -36,7 +36,7 @@ grep 'const version' main.go     # must show X.Y.Z for tag vX.Y.Z
 If it differs, edit it, rerun `go test ./...`, and verify:
 
 ```bash
-go build -o mdl . && ./mdl --version   # expect: mdl X.Y.Z
+go build -o mdl . && ./mdl --version   # expect: MD Lens vX.Y.Z
 ```
 
 ## 3. Commit and push
@@ -60,7 +60,7 @@ GOOS=linux  GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o dist/mdl-linux-a
 GOOS=linux  GOARCH=arm64 go build -trimpath -ldflags="-s -w" -o dist/mdl-linux-arm64 .
 GOOS=windows GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o dist/mdl-windows-amd64.exe .
 (cd dist && sha256sum mdl-* > SHA256SUMS.txt)
-./dist/mdl-linux-amd64 --version    # host smoke test: expect mdl X.Y.Z
+./dist/mdl-linux-amd64 --version    # host smoke test: expect MD Lens vX.Y.Z
 ```
 
 ## 5. Tag and publish
@@ -103,7 +103,7 @@ works end-to-end before declaring success, and show the output:
 ```bash
 gh release view vX.Y.Z --json assets --jq '.assets[] | "\(.name)  \(.size) bytes"'
 cd /tmp && curl -sL -o mdl-verify https://github.com/benelog/md-lens/releases/latest/download/mdl-linux-amd64
-chmod +x mdl-verify && ./mdl-verify --version && rm -f mdl-verify   # expect: mdl X.Y.Z
+chmod +x mdl-verify && ./mdl-verify --version && rm -f mdl-verify   # expect: MD Lens vX.Y.Z
 curl -sIL https://github.com/benelog/md-lens/releases/latest/download/mdl-windows-amd64.exe | grep -i '^HTTP' | tail -1   # expect 200
 ```
 
