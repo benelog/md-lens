@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/go-quality.sh",
+            "timeout": 120,
+            "statusMessage": "Go quality gate (gofmt/goimports/vet/golangci-lint)"
+          }
+        ]
+      }
+    ]
+  }
+}
